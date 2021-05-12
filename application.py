@@ -20,17 +20,17 @@ def checkPrice(lastPrice) :
         response = requests.get(url).json()
 
         currPrice = response['market_data']['current_price'][cfg.currency]
-        
+
 
         if lastPrice > currPrice:
-            show_not("DOGECOIN",'Price decreased by ' + str(lastPrice - currPrice) + ' to ' + str(currPrice) + '. Your current value : ' + str(cfg.owned_coins * currPrice))
+            show_not(response['name'],'Price DECREASED by ' + str(lastPrice - currPrice) + ' to ' + str(currPrice) + '. Your current value : ' + str(cfg.owned_coins * currPrice))
         elif currPrice > lastPrice:
-            show_not("DOGECOIN",'Price increased by ' + str(currPrice - lastPrice) + ' to ' + str(currPrice) + '. Your current value : ' + str(cfg.owned_coins * currPrice))
+            show_not(response['name'],'Price INCREASED by ' + str(currPrice - lastPrice) + ' to ' + str(currPrice) + '. Your current value : ' + str(cfg.owned_coins * currPrice))
         else:
-            print('same')
+            print('NO CHANGE IN PRICE')
 
-        print(currPrice)
-        print(lastPrice)
+        print('Current Price : ' + str(currPrice))
+
         lastPrice = currPrice
         time.sleep(30)
 
