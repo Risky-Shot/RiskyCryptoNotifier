@@ -22,16 +22,16 @@ def checkPrice(lastPrice) :
 
 
         if lastPrice > currPrice:
-            show_not(response['name'],'Price DECREASED by ' + str(lastPrice - currPrice) + ' to ' + str(currPrice) + '. Your current value : ' + str(cfg.owned_coins * currPrice))
+            show_not(response['name'],'Price DECREASED by ' + str(round(lastPrice - currPrice, 2)) + ' to ' + str(round(currPrice,2)) + '. Your current value : ' + str(round(cfg.owned_coins * currPrice, 2)))
         elif currPrice > lastPrice:
-            show_not(response['name'],'Price INCREASED by ' + str(currPrice - lastPrice) + ' to ' + str(currPrice) + '. Your current value : ' + str(cfg.owned_coins * currPrice))
+            show_not(response['name'],'Price INCREASED by ' + str(round(currPrice - lastPrice, 2)) + ' to ' + str(round(currPrice, 2)) + '. Your current value : ' + str(round(cfg.owned_coins * currPrice, 2)))
         else:
             print('NO CHANGE IN PRICE')
 
         currTime = time.localtime()
         currTime = time.asctime(currTime)
         print(currTime)
-        print('Current Price : ' + str(currPrice))
+        print('Current Price : ' + str(round(currPrice, 2)))
 
         lastPrice = currPrice
         time.sleep(30)
